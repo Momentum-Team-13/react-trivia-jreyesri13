@@ -10,7 +10,7 @@ export default function QuizQuestions(props) {
 
     const [score, setScore] = useState(0);
 
-    const [showScore, setShowScore] = useState(true);
+    const [showScore, setShowScore] = useState(false);
 
 
     useEffect(() => {
@@ -61,11 +61,32 @@ export default function QuizQuestions(props) {
         }
     }
 
-    
+
     if (questions.length > 0) {
         return (
             <div className='app'>
-                <>
+                {showScore ? (
+                    <div className='score-section'>
+                        You scored {score} out of {questions.length}
+                    </div>
+                ) : (
+                    <>
+                        <div className='question-section'>
+                            <div className='question-count'>
+                                <span>Question {currentQuestion + 1}</span>/{questions.length}
+                            </div>
+                            <div className='question-text'>{decodeHtml(questions[currentQuestion].question)}</div>
+                        </div>
+                        <div className='answer-section'>
+                            {answerList().map((answerOption) => (
+                                <button>{decodeHtml(answerOption)}</button>
+                            ))}
+                        </div>
+                    </>
+
+                )}
+
+                {/* <>
                     <div className='question-section'>
                         <div className='question-count'>
                             <span>Question {currentQuestion + 1}</span>/{questions.length}
@@ -77,44 +98,9 @@ export default function QuizQuestions(props) {
                             <button>{decodeHtml(answerOption)}</button>
                         ))}
                     </div>
-                </>
+                </> */}
+
             </div>
         )
     }
-
-
-
-    // <div className='app' >
-    //     {showScore ? (
-    //         <div className='score-section'>
-    //             You scored {score} out of {questions.length}
-    //         </div>
-    //     ) : (
-    //         <>
-    //             <div className='question-section'>
-    //                 <div className='question-count'>
-    //                     <span>Question {currentQuestion + 1}</span>/{questions.length}
-    //                 </div>
-
-    //                 {/* <div className='question-text'>{decodeHtml(questions[currentQuestion].question)}</div> */}
-    //                 <div className='question-text'>{<p>Question Place</p>}</div>
-
-    //                 {/* <div className='question-text'>{console.log(questions[currentQuestion].question)}</div> */}
-    //             </div>
-    //             <div className='answer-section'>
-    //                 <button>{<p>Answer Place</p>}</button>
-    //             </div>
-    //             {/* <div className='answer-section'>
-    //                 {questions[currentQuestion].answerOptions.map((answerOption) => (
-    //                     <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-    //                 ))}
-    //             </div> */}
-    //         </>
-    //     )
-    //     }
-    // </div>
-
-
-
-
 }
