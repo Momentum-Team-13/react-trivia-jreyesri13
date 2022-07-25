@@ -61,22 +61,7 @@ export default function QuizQuestions(props) {
         }
     }
 
-
-    // {answerList().map(
-    //         (answer, index) => <div key={index}>
-    //             <button className='answerButtons' onClick={() => { handleUserAnswer(answer) }}>{decodeHtml(answer)}</button>
-    //         </div>
-    //     )}
-
-    // {questions[currentQuestion].answerOptions.map((answerOption) => (
-    //     <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-    // ))}
-
-    // answerList().map((answerOption) => (
-    //     <button>{decodeHtml(answerOption)}</button>
-    // ))
-
-
+    
     if (questions.length > 0) {
         return (
             <div className='app'>
@@ -94,7 +79,6 @@ export default function QuizQuestions(props) {
                     </div>
                 </>
             </div>
-
         )
     }
 
