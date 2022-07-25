@@ -38,8 +38,8 @@ export default function QuizCategories() {
         <>
             {selectedCategory ? (
                 <>
-                    {/* <Questions categoryID = {categoryURL} /> */}
-                    {categoryURL}
+                    <QuizQuestions categoryID = {categoryURL} />
+                    {/* {categoryURL} */}
                 </>
             ) : (
                 <>
