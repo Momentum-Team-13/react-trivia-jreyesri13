@@ -45,7 +45,7 @@ export default function QuizCategories() {
                     <h1>Trivia Game</h1>
                     <h2>Pick a Category</h2>
                     {categories.map((category) => (
-                        <button onClick={() => handleSelectedCategory(category)}>{category.name}</button>
+                        <button className='category-section' onClick={() => handleSelectedCategory(category)}>{category.name}</button>
                     ))}
                 </>
             )
