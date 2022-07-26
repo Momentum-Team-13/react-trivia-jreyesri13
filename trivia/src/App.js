@@ -1,5 +1,5 @@
 import './App.css';
-import QuizCategories from './Categories'
+import QuizCategories from './components/Categories'
 
 function App() {
 
