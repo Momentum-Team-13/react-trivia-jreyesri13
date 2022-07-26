@@ -23,7 +23,7 @@ export default function QuizCategories() {
 
 
     const handleSelectedCategory = (selectedCat) => {
-        console.log(`ID: ${selectedCat.id}, Category: ${selectedCat.name}, `)
+        console.log(`ID: ${selectedCat.id}, Category: ${selectedCat.name}`)
         setSelectedCategory(selectedCat)
         customURL(selectedCat)
     }
@@ -39,7 +39,6 @@ export default function QuizCategories() {
             {selectedCategory ? (
                 <>
                     <QuizQuestions categoryID = {categoryURL} />
-                    {/* {categoryURL} */}
                 </>
             ) : (
                 <>

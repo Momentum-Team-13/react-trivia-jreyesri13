@@ -23,11 +23,10 @@ export default function QuizQuestions(props) {
     }, [categoryID])
 
 
-    if (questions.length > 0) {
-        console.log(questions[0].question)
-    }
-    console.log(questions[0])
-
+    // if (questions.length > 0) {
+    //     console.log(questions[0].question)
+    // }
+    // console.log(questions[0])
 
     const decodeHtml = (html) => {
         let txt = document.createElement("textarea");
@@ -35,29 +34,39 @@ export default function QuizQuestions(props) {
         return txt.value;
     }
 
+    // Fisher–Yates shuffle 
+    const shuffleArray = (arrayZ) => {
+        const array = arrayZ.slice()
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array
+    }
 
-    const answerList = () => {
+
+    const answerArray = () => {
         let incorrectAnswers = questions[currentQuestion].incorrect_answers
         let correctAnswers = questions[currentQuestion].correct_answer
         let allAnswers = [...incorrectAnswers, correctAnswers]
         // console.log(allAnswers)
-        return allAnswers
+        let shuffledArray = shuffleArray(allAnswers)
+        return shuffledArray
     }
 
 
+    const handleAnswerOption = (answerOption) => {
+        let correctAnswer = questions[currentQuestion].correct_answer
 
-
-
-    const handleAnswerOptionClick = (isCorrect) => {
-        if (isCorrect) {
-            setScore(score + 1);
+        if (correctAnswer === answerOption) {
+            setScore(score + 1)
         }
 
-        const nextQuestion = currentQuestion + 1;
+        const nextQuestion = currentQuestion + 1
         if (nextQuestion < questions.length) {
-            setCurrentQuestion(nextQuestion);
+            setCurrentQuestion(nextQuestion)
         } else {
-            setShowScore(true);
+            setShowScore(true)
         }
     }
 
@@ -78,28 +87,13 @@ export default function QuizQuestions(props) {
                             <div className='question-text'>{decodeHtml(questions[currentQuestion].question)}</div>
                         </div>
                         <div className='answer-section'>
-                            {answerList().map((answerOption) => (
-                                <button>{decodeHtml(answerOption)}</button>
+                            {answerArray().map((answer) => (
+                                <button onClick={() => handleAnswerOption(answer)}>{decodeHtml(answer)}</button>
                             ))}
                         </div>
                     </>
 
                 )}
-
-                {/* <>
-                    <div className='question-section'>
-                        <div className='question-count'>
-                            <span>Question {currentQuestion + 1}</span>/{questions.length}
-                        </div>
-                        <div className='question-text'>{decodeHtml(questions[currentQuestion].question)}</div>
-                    </div>
-                    <div className='answer-section'>
-                        {answerList().map((answerOption) => (
-                            <button>{decodeHtml(answerOption)}</button>
-                        ))}
-                    </div>
-                </> */}
-
             </div>
         )
     }
